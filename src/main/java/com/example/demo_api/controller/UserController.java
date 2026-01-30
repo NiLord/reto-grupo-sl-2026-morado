@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo_api.dto.createDto.UserCreateDTO;
+import com.example.demo_api.dto.createDto.UserGetDTO;
 import com.example.demo_api.dto.returnDto.UserResponseDTO;
+import com.example.demo_api.model.User;
 import com.example.demo_api.service.UserService;
 
 import jakarta.validation.Valid;
@@ -23,11 +25,16 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> crear(@Valid @RequestBody UserCreateDTO dto)throws Exception{
+    public ResponseEntity<UserResponseDTO> crear(@Valid @RequestBody UserCreateDTO dto){
 
         UserResponseDTO response = userService.createUser(dto);
 
         return ResponseEntity.status(201).body(response);
     }
     
+    @GetMapping
+    public ResponseEntity<UserResponseDTO> obtener(@Valid @RequestBody UserGetDTO dto){
+        UserResponseDTO response = userService.getUser(dto);
+        return ResponseEntity.status(200).body(response);
+    }
 }

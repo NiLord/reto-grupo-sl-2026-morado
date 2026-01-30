@@ -11,6 +11,7 @@ public class UserMapper {
         User newUser = new User();
         newUser.setCedula(dto.cedula());
         newUser.setNombre(dto.nombre());
+        newUser.setPassword(dto.password());
         newUser.setApellido(dto.apellido());
         newUser.setEmail(dto.email());
         return newUser;
@@ -22,7 +23,7 @@ public class UserMapper {
             user.getNombre(),
             user.getApellido(),
             user.getActivo(),
-            "Bienvenido" + user.getNombre() + " " + user.getApellido()
+            "Bienvenido " + user.getNombre() + " " + user.getApellido()
         );
     }
 }

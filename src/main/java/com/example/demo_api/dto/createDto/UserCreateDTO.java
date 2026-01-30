@@ -16,12 +16,14 @@ public record UserCreateDTO(
     String apellido,
 
     @NotBlank
-    @Email
+    @Email(message = "El email no es valido")
     String email,
 
     @NotBlank
     @Pattern(regexp = "^\\d-\\d{4}-\\d{4}$", message = "La cedula tiene que ser x-xxxx-xxxx")
-    String cedula
+    String cedula,
     
+    @NotBlank(message = "El password no puede estar vacio")
+    String password
 ) {
 } 

@@ -14,11 +14,12 @@ import io.github.cdimascio.dotenv.Dotenv;
 class Mysql {
 
     private final Dotenv dotenv = Dotenv.load();
+    private final String totalUrl = dotenv.get("MYSQLURL") + dotenv.get("MYSQLDATABASE");
 
     @Bean
     public DataSource dataSource(){
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(dotenv.get("MYSQLURL"));
+        config.setJdbcUrl(totalUrl);
         config.setUsername(dotenv.get("MYSQLUSER"));
         config.setPassword(dotenv.get("MYSQLPASSWORD"));
 
