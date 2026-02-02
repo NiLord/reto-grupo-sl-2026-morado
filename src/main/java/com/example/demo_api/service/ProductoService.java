@@ -3,6 +3,7 @@ package com.example.demo_api.service;
 import org.springframework.stereotype.Service;
 import com.example.demo_api.model.Producto;
 import com.example.demo_api.reposiroty.ProductoRepository;
+import com.example.demo_api.exception.NotFound;
 
 import java.util.List;
 
@@ -17,6 +18,10 @@ public class ProductoService {
     }
 
     public List<Producto> getProducto() {
+        List<Producto> productoList = productoRepository.findAll();
+        if (productoList.isEmpty()) {
+            throw new NotFound("No se encontraron productos");
+        }
         return productoRepository.findAll();
     }
     
