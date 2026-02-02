@@ -26,6 +26,7 @@ function ProductoCard({
     >
       <div className="productTop">
         <button
+          className="removeQtyBtn"
           onClick={(e) => {
             e.stopPropagation();
             onRemovePress(productId);

@@ -1,8 +1,8 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0;
   text-align: center;
+    background-color: white;
 }
 
 .logo {
@@ -44,16 +44,40 @@
 
 .mainContainer {
   background-color: white;
-  width: 100vh;
-  ;
+  width: 100vw;
+  height: 100vh;
 }
 
 .productName,.productPrice,.productoStock,.productSelected{
   color: black;
 }
 
+.productCard {
+  width: 200px;
+  background-color: #f0dbdb;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+
+.productCardList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+
 .productTop{
   display: flex;
+  justify-content: space-between;
 }
 .productoStock{
 color: black;
