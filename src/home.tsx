@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import ProductCardList from "./components/productCardList.tsx/productCardList";
+import CambioComponent from "./components/CambioComponent";
 
 const LOCAL_STORAGE_KEY = "selectedProducts";
 
@@ -56,6 +57,9 @@ function Home() {
       <button onClick={sendOrder} style={{ marginTop: "24px" }}>
         Enviar pedido
       </button>
+      <div>
+        <CambioComponent cambioTotal={0}></CambioComponent>
+      </div>
     </div>
   );
 }
