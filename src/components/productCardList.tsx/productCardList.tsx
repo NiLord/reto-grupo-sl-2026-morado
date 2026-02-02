@@ -4,10 +4,10 @@ import ProductoCard from "../productoCard.tsx/productoCard";
 const LOCAL_STORAGE_KEY = "selectedProducts";
 
 type Product = {
-  id: number;
-  name: string;
-  price: number;
-  stock: number;
+  id_producto: number;
+  nombre: string;
+  precio: number;
+  cantidad: number;
 };
 
 type LocalProduct = {
@@ -20,19 +20,27 @@ function ProductCardList() {
   const [localProducts, setLocalProducts] = useState<LocalProduct[]>([]);
 
   useEffect(() => {
-    async function fetchProducts() {
-      const res = {
-        json: () => {
-          return [
-            { id: 1, name: "Prueba", price: 20, stock: 2 },
-            { id: 2, name: "Prueba", price: 20, stock: 2 },
-            { id: 3, name: "Prueba", price: 20, stock: 2 },
-          ];
-        },
-      };
-      const data: Product[] = await res.json();
-      setProducts(data);
+async function fetchProducts() {
+  const res = await fetch(
+    "http://localhost:8080/producto",
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
+  );
+
+  if (!res.ok) {
+    throw new Error("Error al obtener productos");
+  }
+
+  const data: Product[] = await res.json();
+  data.map((e) => {
+    console.log(e)
+  })
+  setProducts(data);
+}
 
     fetchProducts();
   }, []);
@@ -89,15 +97,15 @@ function ProductCardList() {
       <p>Selecciona productos</p>
       <div className="productCardList">
         {products.map((product) => {
-          const local = localProducts.find((lp) => lp.productId === product.id);
+          const local = localProducts.find((lp) => lp.productId === product.id_producto);
 
           return (
             <ProductoCard
-              key={product.id}
-              productId={product.id}
-              productName={product.name}
-              productPrice={product.price}
-              productStock={product.stock}
+              key={product.id_producto}
+              productId={product.id_producto}
+              productName={product.nombre}
+              productPrice={product.precio}
+              productStock={product.cantidad}
               quantitySelected={local?.quantity ?? 0}
               onCardPress={handleCardPress}
               onRemovePress={handleRemovePress}
