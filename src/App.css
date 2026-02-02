@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.mainContainer {
+  background-color: white;
+  width: 100vh;
+  ;
+}
+
+.productName,.productPrice,.productoStock,.productSelected{
+  color: black;
+}
+
+.productTop{
+  display: flex;
+}
+.productoStock{
+color: black;
+}
+
+.productCard{
+  max-width: 200px;
+}
